@@ -1,0 +1,17 @@
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\bin\Debug\TMA.exe.config
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\bin\Debug\TMA.exe
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\bin\Debug\TMA.pdb
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\obj\Debug\TMA.csproj.AssemblyReference.cache
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\obj\Debug\TMA.Properties.Resources.resources
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\obj\Debug\TMA.csproj.GenerateResource.cache
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\obj\Debug\TMA.csproj.CoreCompileInputs.cache
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\obj\Debug\TMA.exe
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\obj\Debug\TMA.pdb
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\bin\Debug\Newtonsoft.Json.dll
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\bin\Debug\Newtonsoft.Json.xml
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\obj\Debug\TMA.csproj.Up2Date
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\obj\Debug\TMA.RequestForm.resources
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\obj\Debug\TMA.ItemForm.resources
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\obj\Debug\TMA.Start.resources
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\obj\Debug\TMA.CreatingRequestForm.resources
+D:\test\TMA_Warehouse_Desktop\TMA\TMA\obj\Debug\TMA.Form1.resources
