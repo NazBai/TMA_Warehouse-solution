@@ -118,13 +118,8 @@ namespace TMA
         {
             if (int.TryParse(quantityTexBox.Text, out int enteredValue) && int.TryParse(selectedItemQuantity, out int maxValue))
             {
-                // Check if the entered value exceeds the maximum allowed value
                 if (enteredValue > maxValue)
                 {
-                    // You can choose to reject the input
-                    // MessageBox.Show("Entered value cannot exceed " + maxAllowedValue);
-
-                    // Or adjust the entered value to the maximum allowed value
                     quantityTexBox.Text = selectedItemQuantity;
                 }
             }
@@ -132,7 +127,6 @@ namespace TMA
             {
                 
                 quantityTexBox.Text = "";
-                MessageBox.Show("Please enter a valid value.");
             }
         }
 

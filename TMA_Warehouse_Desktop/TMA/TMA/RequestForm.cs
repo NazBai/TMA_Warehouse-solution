@@ -21,12 +21,21 @@ namespace TMA
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ListViewItem selectedRequest = data.requestData.SelectedItems[0];
-            _ = data.SendPutRequestRequestAsync(selectedRequest.SubItems[0].Text, selectedRequest.SubItems[1].Text, commentTextBox.Text, "Confirmd");
-            data.ReduseItemsQuantiry();
-            Hide();
 
-            
+            ListViewItem selectedRequest = data.requestData.SelectedItems[0];
+
+            string selectedRequestStatus = selectedRequest.SubItems[3].Text;
+
+            if (!selectedRequestStatus.Equals("New"))
+            {
+                MessageBox.Show("Request already procesed");
+            }
+            else
+            {
+                _ = data.SendPutRequestRequestAsync(selectedRequest.SubItems[0].Text, selectedRequest.SubItems[1].Text, commentTextBox.Text, "Confirmed");
+                data.ReduseItemsQuantiry();
+                Hide();
+            }
         }
 
         private void RequestForm_Load(object sender, EventArgs e)
@@ -36,9 +45,23 @@ namespace TMA
 
         private void button2_Click(object sender, EventArgs e)
         {
+
             ListViewItem selectedRequest = data.requestData.SelectedItems[0];
-            _ = data.SendPutRequestRequestAsync(selectedRequest.SubItems[0].Text, selectedRequest.SubItems[1].Text, commentTextBox.Text, "Rejected");
-            Hide();
+
+
+
+            string selectedRequestStatus = selectedRequest.SubItems[3].Text;
+
+            if (!selectedRequestStatus.Equals("New"))
+            {
+                MessageBox.Show("Request already procesed");
+            }
+            else
+            {
+                _ = data.SendPutRequestRequestAsync(selectedRequest.SubItems[0].Text, selectedRequest.SubItems[1].Text, commentTextBox.Text, "Rejected");
+                Hide();
+            }
+            
 
         }
 
