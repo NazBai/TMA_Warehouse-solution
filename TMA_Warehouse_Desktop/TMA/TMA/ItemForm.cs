@@ -15,6 +15,7 @@ namespace TMA
     {
         public bool inserting { get; set; }
         private DataManager data { get; set; }
+        public string itemId { get; set; }
         public ItemForm(DataManager data)
         {
             InitializeComponent();
@@ -23,8 +24,6 @@ namespace TMA
             itemGroupComboBox.Items.AddRange(itemGroups);
             unitOfMeasurementComboBox.Items.AddRange(unitsOfMeasurnemt);
             this.data = data;
-
-        
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -50,13 +49,13 @@ namespace TMA
                 if (inserting)
                 {
 
-                    _ = data.SendPostItemRequestAsync( "1", itemNameTextBox.Text, itemGroupComboBox.SelectedItem.ToString(), unitOfMeasurementComboBox.SelectedItem.ToString(),
+                    _ = data.SendPostItemRequestAsync(itemNameTextBox.Text, itemGroupComboBox.SelectedItem.ToString(), unitOfMeasurementComboBox.SelectedItem.ToString(),
                                            quantityTextBox.Text, priceTextBox.Text, statusTextBox.Text, storageLocationTextBox.Text, contactPersonTextBox.Text);
                 }
                 else
                 {
 
-                    _ = data.SendPutItemRequestAsync("1", itemNameTextBox.Text, itemGroupComboBox.SelectedItem.ToString(), unitOfMeasurementComboBox.SelectedItem.ToString(),
+                    _ = data.SendPutItemRequestAsync(itemId, itemNameTextBox.Text, itemGroupComboBox.SelectedItem.ToString(), unitOfMeasurementComboBox.SelectedItem.ToString(),
                                            quantityTextBox.Text, priceTextBox.Text, statusTextBox.Text, storageLocationTextBox.Text, contactPersonTextBox.Text);
                 }
             }
@@ -89,10 +88,8 @@ namespace TMA
 
         private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Check if the pressed key is a digit or a control key (e.g., Backspace)
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                // If not a digit or a control key, ignore the key press event
                 e.Handled = true;
             }
         }
@@ -114,7 +111,7 @@ namespace TMA
             Hide();
         }
 
-        public void fillFormFilds(string id, string name, string itemGroup, string unitOfMesurment, 
+        public void fillFormFilds(string name, string itemGroup, string unitOfMesurment, 
                                     string quantity, string price, string status, string storageLocation, string contactPerson)
         {
             itemNameTextBox.Text = name;
@@ -139,6 +136,11 @@ namespace TMA
         }
 
         private void priceTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ItemForm_Load(object sender, EventArgs e)
         {
 
         }

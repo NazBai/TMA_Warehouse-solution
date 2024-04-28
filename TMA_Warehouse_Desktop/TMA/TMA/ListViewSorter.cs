@@ -11,15 +11,12 @@ namespace TMA
 {
     internal class ListViewSorter : IComparer
     {
-        private int columnToSort;
-        private SortOrder orderOfSort;
-        private CaseInsensitiveComparer objectCompare;
+        private int columnToSort = 0;
+        private SortOrder orderOfSort = SortOrder.Ascending;
 
         public ListViewSorter()
         {
-            columnToSort = 0;
-            orderOfSort = SortOrder.None;
-            objectCompare = new CaseInsensitiveComparer();
+
         }
 
         public int Compare(object x, object y)
@@ -46,6 +43,7 @@ namespace TMA
             {
                 result = -result;
             }
+
 
             return result;
         }

@@ -13,20 +13,20 @@ namespace TMA
 {
     public class DataManager
     {
-        public ListView requestRowDataManager;
-        public ListView requestDataManager;
-        public ListView itemDataManager;
+        public ListView requestRowData;
+        public ListView requestData;
+        public ListView itemData;
         public ListBox itemNames { set; get; }
         private static readonly HttpClient client = new HttpClient();
 
-        public DataManager(ListView itemDataManager, ListView requestDataManager, ListView requestRowDataManager)
+        public DataManager(ListView itemData, ListView requestData, ListView requestRowData)
         {
-            this.itemDataManager = itemDataManager;
-            this.requestRowDataManager = requestRowDataManager;
-            this.requestDataManager = requestDataManager;
+            this.itemData = itemData;
+            this.requestRowData = requestRowData;
+            this.requestData = requestData;
         }
 
-        public async Task GetItemsDataManager()
+        public async Task GetItemsDataAsync()
         {
             string result = "";
             string apiUrl = "http://localhost:5033/api/Item";
@@ -43,10 +43,10 @@ namespace TMA
                 Console.WriteLine($"Error: {response.StatusCode}");
             }
 
-            FillDataManagerTable(itemDataManager, result);
+            FillDataManagerTable(itemData, result);
 
         }
-        public async  Task GetRequestRow(string rowId)
+        public async Task GetRequestRowAsync(string rowId)
         {
             string result = "";
             string apiUrl = "http://localhost:5033/api/RequestRow/RequestRow/" + rowId;
@@ -64,11 +64,11 @@ namespace TMA
                 Console.WriteLine($"Error: {response.StatusCode}");
             }
 
-            FillDataManagerTable(requestRowDataManager, result);
+            FillDataManagerTable(requestRowData, result);
 
         }
 
-        public async Task GetRequestDataManager()
+        public async Task GetRequestDataManagerAsync()
         {
             string result = "";
 
@@ -87,11 +87,11 @@ namespace TMA
                 Console.WriteLine($"Error: {response.StatusCode}");
             }
 
-            FillDataManagerTable(requestDataManager, result);
+            FillDataManagerTable(requestData, result);
 
         }
 
-        public void FillDataManagerTable(ListView listView, string data)
+        private void FillDataManagerTable(ListView listView, string data)
         {
             
 
@@ -123,6 +123,9 @@ namespace TMA
                                                         string unitOfMesurment, string quantity, string price,
                                                         string status, string storageLocation, string contactPerson)
         {
+            
+            
+
             string url = "http://localhost:5033/api/Item";
             string jsonContent = "{\r\n  \"item_ID\": " + itemId +
                     ",\r\n  \"name\": \"" + name +
@@ -145,7 +148,7 @@ namespace TMA
                 {
                     Console.WriteLine("PUT request successful.");
                     MessageBox.Show("Item Updated");
-                    _ = GetItemsDataManager();
+                    _ = GetItemsDataAsync();
                 }
                 else
                 {  
@@ -177,7 +180,7 @@ namespace TMA
                 {
                     MessageBox.Show("Request updated");
                     Console.WriteLine("PUT request successful.");
-                    _ = GetRequestDataManager();
+                    _ = GetRequestDataManagerAsync();
                 }
                 else
                 {
@@ -199,7 +202,7 @@ namespace TMA
             string itemID = GetItemIdByName(itemName);
             string jsonRequestContent = "{\"request_ID\": \"" + 1 +
                 "\",\"employee_name\": \"" + name +
-                "\",\"comment\": \"" + "" +
+                "\",\"comment\": \"" + " " +
                 "\",\"status\": \"" + status + "\"}";
 
             try
@@ -214,7 +217,7 @@ namespace TMA
                     Console.WriteLine("PUT request successful.");
                     _ = SendPostRequestRowRequestAsync(highestID, comment, itemName, unitOfMeasurement, quantity, price);
                     MessageBox.Show("Request created");
-                    _ = GetRequestDataManager();
+                    _ = GetRequestDataManagerAsync();
 
                 }
                 else
@@ -254,12 +257,14 @@ namespace TMA
                 {
                     
                     Console.WriteLine("PUT request successful.");
+                    MessageBox.Show("RequestRow created");
 
                 }
                 else
                 {
 
                     Console.WriteLine("Failed to send PUT request. Status code: " + response.StatusCode);
+                    MessageBox.Show("Failed to insert request row");
                 }
             }
             catch (Exception ex)
@@ -268,14 +273,14 @@ namespace TMA
             }
         }
 
-        public async Task SendPostItemRequestAsync(string id, string name, string itemGroup,
+        public async Task SendPostItemRequestAsync(string name, string itemGroup,
                                                         string unitOfMesurment, string quantity, string price,
                                                         string status, string storageLocation, string contactPerson)
         {
 
             try
             {
-                string jsonDataManager = "{\r\n  \"item_ID\": " + id +
+                string jsonDataManager = "{\r\n  \"item_ID\": " + 1 +
                     ",\r\n  \"name\": \"" + name +
                     "\",\r\n  \"item_Group\": \"" + itemGroup +
                     "\",\r\n  \"unit_of_measurement\": \"" + unitOfMesurment +
@@ -293,7 +298,7 @@ namespace TMA
                 {
                     Console.WriteLine("Record created successfully.");
                     MessageBox.Show("Item record Created");
-                    _ = GetItemsDataManager();
+                    _ = GetItemsDataAsync();
                 }
                 else
                 {
@@ -320,11 +325,13 @@ namespace TMA
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("DELETE request successful.");
-                    _ = GetItemsDataManager();
+                    MessageBox.Show("Item deleted");
+                    _ = GetItemsDataAsync();
                 }
                 else
                 {
                     Console.WriteLine("Failed to send DELETE request. Status code: " + response.StatusCode);
+                    MessageBox.Show("Failed to delete item");
                 }
             }
             catch (Exception ex)
@@ -339,7 +346,7 @@ namespace TMA
 
            
 
-            foreach (ListViewItem item in itemDataManager.Items)
+            foreach (ListViewItem item in itemData.Items)
             {
                 namesList.Add(item.SubItems[1].Text);
             }
@@ -352,9 +359,9 @@ namespace TMA
             int columnIndex = 0;
             int maxIntValue = 0;
 
-            if (requestDataManager.Items.Count > 0)
+            if (requestData.Items.Count > 0)
             {
-                 maxIntValue = requestDataManager.Items
+                 maxIntValue = requestData.Items
                                             .Cast<ListViewItem>()
                                             .Select(item => int.TryParse(item.SubItems[columnIndex].Text, out int value) ? value : 0)
                                             .Max();
@@ -372,7 +379,7 @@ namespace TMA
             string res = "";
             string targetValue = itemName;
 
-            foreach (ListViewItem item in itemDataManager.Items)
+            foreach (ListViewItem item in itemData.Items)
             {
                 if (item.SubItems.Count > 1 && item.SubItems[1].Text == targetValue)
                 {
@@ -391,7 +398,7 @@ namespace TMA
             string res = "";
             string targetValue = itemName;
 
-            foreach (ListViewItem item in itemDataManager.Items)
+            foreach (ListViewItem item in itemData.Items)
             {
                
                 if (item.SubItems.Count > 1 && item.SubItems[1].Text == targetValue)
@@ -406,13 +413,14 @@ namespace TMA
 
         }
 
+
         public void ReduseItemsQuantiry()
         {
-            foreach(ListViewItem row in requestRowDataManager.Items)
+            foreach (ListViewItem row in requestRowData.Items)
             {
                 string itemId = row.SubItems[2].Text;
 
-                foreach (ListViewItem item in itemDataManager.Items)
+                foreach (ListViewItem item in itemData.Items)
                 {
                     if (itemId == item.SubItems[0].Text)
                     {
@@ -425,6 +433,7 @@ namespace TMA
                 }
             }
         }
+    
 
         public async Task SendDeleteRequestRequestAsync(string requestId)
         {
@@ -438,7 +447,7 @@ namespace TMA
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("DELETE request successful.");
-                    _ = GetRequestDataManager();
+                    _ = GetRequestDataManagerAsync();
                 }
                 else
                 {

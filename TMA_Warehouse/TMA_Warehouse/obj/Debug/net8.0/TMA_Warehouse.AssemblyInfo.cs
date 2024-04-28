@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TMA_Warehouse")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d29535a0b5953f84e526a9e9aeff0cb422498ee")]
 [assembly: System.Reflection.AssemblyProductAttribute("TMA_Warehouse")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TMA_Warehouse")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

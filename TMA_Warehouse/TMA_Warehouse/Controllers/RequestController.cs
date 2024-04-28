@@ -43,7 +43,7 @@ namespace TMA_Warehouse.Controllers
                 //Request_ID = request.Request_ID,
                 Employee_name = request.Employee_name,
                 Status = request.Status,
-                Comment = request.Status
+                Comment = request.Comment
             };
             
             if(!requestRepository.CreateRequest(newRequest))
@@ -79,8 +79,8 @@ namespace TMA_Warehouse.Controllers
             {
                 Request_ID = updatedRequest.Request_ID,
                 Employee_name = updatedRequest.Employee_name,
-                Status = updatedRequest.Comment,
-                Comment = updatedRequest.Status
+                Status = updatedRequest.Status,
+                Comment = updatedRequest.Comment
             };
 
             if (!requestRepository.UpdateRequest(request))

@@ -21,7 +21,7 @@ namespace TMA
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ListViewItem selectedRequest = data.requestDataManager.SelectedItems[0];
+            ListViewItem selectedRequest = data.requestData.SelectedItems[0];
             _ = data.SendPutRequestRequestAsync(selectedRequest.SubItems[0].Text, selectedRequest.SubItems[1].Text, commentTextBox.Text, "Confirmd");
             data.ReduseItemsQuantiry();
             Hide();
@@ -36,7 +36,7 @@ namespace TMA
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ListViewItem selectedRequest = data.requestDataManager.SelectedItems[0];
+            ListViewItem selectedRequest = data.requestData.SelectedItems[0];
             _ = data.SendPutRequestRequestAsync(selectedRequest.SubItems[0].Text, selectedRequest.SubItems[1].Text, commentTextBox.Text, "Rejected");
             Hide();
 
@@ -50,6 +50,11 @@ namespace TMA
 
                 this.Hide();
             }
+        }
+
+        private void requestRowList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

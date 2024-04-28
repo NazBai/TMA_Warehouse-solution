@@ -38,12 +38,12 @@
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.commentTextBox = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.commentTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -72,47 +72,47 @@
             this.requestRowList.GridLines = true;
             this.requestRowList.HideSelection = false;
             this.requestRowList.Location = new System.Drawing.Point(0, 0);
-            this.requestRowList.MaximumSize = new System.Drawing.Size(1468, 335);
+            this.requestRowList.MaximumSize = new System.Drawing.Size(1455, 335);
             this.requestRowList.Name = "requestRowList";
-            this.requestRowList.Size = new System.Drawing.Size(1468, 335);
+            this.requestRowList.Size = new System.Drawing.Size(1455, 335);
             this.requestRowList.TabIndex = 0;
             this.requestRowList.UseCompatibleStateImageBehavior = false;
             this.requestRowList.View = System.Windows.Forms.View.Details;
+            this.requestRowList.SelectedIndexChanged += new System.EventHandler(this.requestRowList_SelectedIndexChanged);
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Request Id";
-            this.columnHeader6.Width = 140;
+            this.columnHeader6.Width = 70;
             // 
             // columnHeader7
             // 
             this.columnHeader7.Text = "Request Row ID";
-            this.columnHeader7.Width = 210;
+            this.columnHeader7.Width = 100;
             // 
             // columnHeader8
             // 
             this.columnHeader8.Text = "Item ID";
-            this.columnHeader8.Width = 100;
+            this.columnHeader8.Width = 70;
             // 
             // columnHeader11
             // 
             this.columnHeader11.Text = "Unit Of Measurement";
-            this.columnHeader11.Width = 250;
+            this.columnHeader11.Width = 120;
             // 
             // columnHeader12
             // 
             this.columnHeader12.Text = "Quantity";
-            this.columnHeader12.Width = 100;
             // 
             // columnHeader13
             // 
             this.columnHeader13.Text = "Price Without VAT";
-            this.columnHeader13.Width = 230;
+            this.columnHeader13.Width = 130;
             // 
             // columnHeader14
             // 
             this.columnHeader14.Text = "Comment";
-            this.columnHeader14.Width = 300;
+            this.columnHeader14.Width = 80;
             // 
             // panel3
             // 
@@ -125,6 +125,23 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1468, 335);
             this.panel3.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(75, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(123, 29);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Comment:";
+            // 
+            // commentTextBox
+            // 
+            this.commentTextBox.Location = new System.Drawing.Point(80, 87);
+            this.commentTextBox.Multiline = true;
+            this.commentTextBox.Name = "commentTextBox";
+            this.commentTextBox.Size = new System.Drawing.Size(283, 169);
+            this.commentTextBox.TabIndex = 2;
             // 
             // button2
             // 
@@ -157,23 +174,6 @@
             this.columnHeader10.DisplayIndex = 3;
             this.columnHeader10.Text = "Item ID";
             this.columnHeader10.Width = 120;
-            // 
-            // commentTextBox
-            // 
-            this.commentTextBox.Location = new System.Drawing.Point(80, 87);
-            this.commentTextBox.Multiline = true;
-            this.commentTextBox.Name = "commentTextBox";
-            this.commentTextBox.Size = new System.Drawing.Size(283, 169);
-            this.commentTextBox.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(75, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 29);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Comment:";
             // 
             // RequestForm
             // 

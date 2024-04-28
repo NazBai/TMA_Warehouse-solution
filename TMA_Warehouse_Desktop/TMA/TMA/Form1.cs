@@ -14,7 +14,7 @@ namespace TMA
     {
        
 
-        private ListViewSorter lvwColumnSorter = new ListViewSorter();
+        private ListViewSorter lvwColumnSorter;
         private DataManager data;
         private RequestForm requestForm;
         private ItemForm itemForm;
@@ -24,21 +24,24 @@ namespace TMA
         {
             InitializeComponent(); 
             lvwColumnSorter = new ListViewSorter();
-            listView1.ListViewItemSorter = lvwColumnSorter;
-            listView2.ListViewItemSorter = lvwColumnSorter;
+            itemListView.ListViewItemSorter = lvwColumnSorter;
+            requestListView.ListViewItemSorter = lvwColumnSorter;
+            requestListView.Visible = false;
+            itemListView.Visible = true;
+
             requestForm = new RequestForm();
 
-            data = new DataManager(listView1, listView2, requestForm.requestRowList);
+            data = new DataManager(itemListView, requestListView, requestForm.requestRowList);
             orderForm = new CreatingRequestForm(data);
             itemForm = new ItemForm(data);
             requestForm.data = data;
             
 
-            listView1.ColumnClick += new ColumnClickEventHandler(listView1_ColumnClick); 
-            listView2.ColumnClick += new ColumnClickEventHandler(listView2_ColumnClick);
+            itemListView.ColumnClick += new ColumnClickEventHandler(itemListView_ColumnClick); 
+            requestListView.ColumnClick += new ColumnClickEventHandler(requestListView_ColumnClick);
 
-            _ = data.GetItemsDataManager();
-            _ = data.GetRequestDataManager();
+            _ = data.GetItemsDataAsync();
+            _ = data.GetRequestDataManagerAsync();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -61,25 +64,25 @@ namespace TMA
             
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void itemListView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            listView2.Visible = false;
-            listView1.Visible = true;
-            _ = data.GetItemsDataManager();
+            requestListView.Visible = false;
+            itemListView.Visible = true;
+            _ = data.GetItemsDataAsync();
             
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
 
-            if (listView1.SelectedItems.Count > 0)
+            if (itemListView.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = listView1.SelectedItems[0];
+                ListViewItem selectedItem = itemListView.SelectedItems[0];
 
                 _ = data.SendDeleteItemRequestAsync(selectedItem.SubItems[0].Text);
             }
@@ -87,7 +90,7 @@ namespace TMA
 
         }
 
-        private void listView1_AfterLabelEdit(object sender, LabelEditEventArgs e)
+        private void itemListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
 
         }
@@ -99,47 +102,47 @@ namespace TMA
             
         }
 
-        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void itemListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            // Determine if the clicked column is already the column that is being sorted.
             
-
             
-            lvwColumnSorter.Order = SortOrder.Ascending;
             
             lvwColumnSorter.SortColumn = e.Column;
 
-            // Perform the sort with these new sort options.
-            listView1.Sort();
+            itemListView.Sort();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            _ = data.GetRequestRow(listView2.SelectedItems[0].Text);
-            requestForm.Show();
+            if (requestListView.SelectedItems.Count > 0)
+            {
+                _ = data.GetRequestRowAsync(requestListView.SelectedItems[0].Text);
+                requestForm.Show();
+            }
+                
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            listView1.Visible = false;
-            listView2.Visible = true;
-            _ = data.GetRequestDataManager();
+            itemListView.Visible = false;
+            requestListView.Visible = true;
+            _ = data.GetRequestDataManagerAsync();
         }
 
         
 
-        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        private void requestListView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void listView2_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void requestListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            lvwColumnSorter.Order = SortOrder.Ascending;
+            
 
             lvwColumnSorter.SortColumn = e.Column;
 
-            listView2.Sort();
+            requestListView.Sort();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -151,13 +154,14 @@ namespace TMA
         private void button6_Click(object sender, EventArgs e)
         {
 
-            if (listView1.SelectedItems.Count > 0)
+            if (itemListView.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = listView1.SelectedItems[0];
+                ListViewItem selectedItem = itemListView.SelectedItems[0];
                 
-                itemForm.fillFormFilds(selectedItem.SubItems[0].Text, selectedItem.SubItems[1].Text,
+                itemForm.fillFormFilds(selectedItem.SubItems[1].Text,
                 selectedItem.SubItems[2].Text, selectedItem.SubItems[3].Text, selectedItem.SubItems[4].Text, selectedItem.SubItems[5].Text, selectedItem.SubItems[6].Text,
                 selectedItem.SubItems[7].Text, selectedItem.SubItems[8].Text);
+                itemForm.itemId = selectedItem.SubItems[0].Text;
 
                 itemForm.Show();
             }
@@ -177,9 +181,9 @@ namespace TMA
         {
 
             data.LoadItemNames();
-            if (listView2.SelectedItems.Count > 0)
+            if (requestListView.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = listView2.SelectedItems[0];
+                ListViewItem selectedItem = requestListView.SelectedItems[0];
                 orderForm.selectedRequestId = selectedItem.SubItems[0].Text;
 
 
@@ -190,9 +194,9 @@ namespace TMA
 
         private void button4_Click_2(object sender, EventArgs e)
         {
-            if (listView2.SelectedItems.Count > 0)
+            if (requestListView.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = listView2.SelectedItems[0];
+                ListViewItem selectedItem = requestListView.SelectedItems[0];
 
                 _ = data.SendDeleteRequestRequestAsync(selectedItem.SubItems[0].Text);
             }

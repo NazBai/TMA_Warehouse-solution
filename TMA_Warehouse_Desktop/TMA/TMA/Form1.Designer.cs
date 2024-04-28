@@ -34,10 +34,12 @@
             this.openButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.requestListView = new System.Windows.Forms.ListView();
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.itemListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -54,8 +56,6 @@
             this.updateButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -114,33 +114,33 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Info;
-            this.panel3.Controls.Add(this.listView2);
-            this.panel3.Controls.Add(this.listView1);
+            this.panel3.Controls.Add(this.requestListView);
+            this.panel3.Controls.Add(this.itemListView);
             this.panel3.Location = new System.Drawing.Point(288, 145);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1679, 367);
             this.panel3.TabIndex = 8;
             // 
-            // listView2
+            // requestListView
             // 
-            this.listView2.AutoArrange = false;
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.requestListView.AutoArrange = false;
+            this.requestListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader9,
             this.columnHeader10,
             this.columnHeader11,
             this.columnHeader12});
-            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(0, 0);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(1679, 367);
-            this.listView2.TabIndex = 1;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            this.listView2.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView2_ColumnClick);
-            this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
+            this.requestListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.requestListView.FullRowSelect = true;
+            this.requestListView.GridLines = true;
+            this.requestListView.HideSelection = false;
+            this.requestListView.Location = new System.Drawing.Point(0, 0);
+            this.requestListView.Name = "requestListView";
+            this.requestListView.Size = new System.Drawing.Size(1679, 367);
+            this.requestListView.TabIndex = 1;
+            this.requestListView.UseCompatibleStateImageBehavior = false;
+            this.requestListView.View = System.Windows.Forms.View.Details;
+            this.requestListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.requestListView_ColumnClick);
+            this.requestListView.SelectedIndexChanged += new System.EventHandler(this.requestListView_SelectedIndexChanged);
             // 
             // columnHeader9
             // 
@@ -151,10 +151,18 @@
             this.columnHeader10.Text = "Employee_name";
             this.columnHeader10.Width = 222;
             // 
-            // listView1
+            // columnHeader11
             // 
-            this.listView1.AutoArrange = false;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader11.Text = "Comment";
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Status";
+            // 
+            // itemListView
+            // 
+            this.itemListView.AutoArrange = false;
+            this.itemListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
@@ -164,21 +172,21 @@
             this.columnHeader7,
             this.columnHeader8,
             this.columnHeader13});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1679, 367);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.Visible = false;
-            this.listView1.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.listView1_AfterLabelEdit);
-            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.itemListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemListView.FullRowSelect = true;
+            this.itemListView.GridLines = true;
+            this.itemListView.HideSelection = false;
+            this.itemListView.Location = new System.Drawing.Point(0, 0);
+            this.itemListView.MultiSelect = false;
+            this.itemListView.Name = "itemListView";
+            this.itemListView.Size = new System.Drawing.Size(1679, 367);
+            this.itemListView.TabIndex = 0;
+            this.itemListView.UseCompatibleStateImageBehavior = false;
+            this.itemListView.View = System.Windows.Forms.View.Details;
+            this.itemListView.Visible = false;
+            this.itemListView.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.itemListView_AfterLabelEdit);
+            this.itemListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.itemListView_ColumnClick);
+            this.itemListView.SelectedIndexChanged += new System.EventHandler(this.itemListView_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -296,14 +304,6 @@
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.button4_Click);
             // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Status";
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "Comment";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
@@ -337,7 +337,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView itemListView;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -347,7 +347,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView requestListView;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.Button updateButton;
